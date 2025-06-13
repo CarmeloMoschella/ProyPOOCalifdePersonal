@@ -1,15 +1,22 @@
 
 package proypoocalifdepersonal;
-
-import java.util.Scanner;
-
-
 public class Empleado {
     protected int cedula;
-    protected String NombreApellido;
+    protected String nombreApellido;
     protected String fechaContratacion;
-    protected String Departamento;
+    protected String departamento;
     protected int puntos;
+    protected String cargo;
+
+    public Empleado(int cedula, String nombreApellido, String fechaContratacion, 
+                   String departamento, int puntos, String cargo) {
+        this.cedula = cedula;
+        this.nombreApellido = nombreApellido;
+        this.fechaContratacion = fechaContratacion;
+        this.departamento = departamento;
+        this.puntos = puntos;
+        this.cargo = cargo;
+    }
 
     public int getCedula() {
         return cedula;
@@ -20,11 +27,11 @@ public class Empleado {
     }
 
     public String getNombreApellido() {
-        return NombreApellido;
+        return nombreApellido;
     }
 
-    public void setNombreApellido(String NombreApellido) {
-        this.NombreApellido = NombreApellido;
+    public void setNombreApellido(String nombreApellido) {
+        this.nombreApellido = nombreApellido;
     }
 
     public String getFechaContratacion() {
@@ -36,11 +43,11 @@ public class Empleado {
     }
 
     public String getDepartamento() {
-        return Departamento;
+        return departamento;
     }
 
-    public void setDepartamento(String Departamento) {
-        this.Departamento = Departamento;
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
     }
 
     public int getPuntos() {
@@ -50,19 +57,24 @@ public class Empleado {
     public void setPuntos(int puntos) {
         this.puntos = puntos;
     }
-    
-    Scanner datos= new Scanner(System.in);
-    
-    public void crearEmpleado(){
-        System.out.println("Porfavor ingrese la cedula del empleado: ");
-        cedula = datos.nextInt();
-        datos.nextLine();
-        System.out.println("Porfavor ingrese los Nombres y Apellidos del empleado: ");
-        NombreApellido= datos.nextLine();
-        System.out.println("Porfavor ingrese el departamento al que pertenece el empleado: ");
-        Departamento = datos.nextLine();
-        System.out.println("Porfavor ingrese la fecha de contratacion del empleado: ");
-        fechaContratacion = datos.nextLine();
-        
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
+    @Override
+    public String toString() {
+        return "Empleado{" +
+                "cedula=" + cedula +
+                ", nombreApellido='" + nombreApellido + '\'' +
+                ", fechaContratacion='" + fechaContratacion + '\'' +
+                ", departamento='" + departamento + '\'' +
+                ", puntos=" + puntos +
+                ", cargo='" + cargo + '\'' +
+                '}';
     }
 }
