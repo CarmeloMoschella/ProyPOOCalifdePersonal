@@ -1,29 +1,19 @@
 package proypoocalifdepersonal;
-import java.util.HashMap;
-import java.util.Map;
 
-public class Usuario {   
-    private static final Map<String, String> USUARIOS = new HashMap<>();
-    
-    static {
+public class Usuario {
+    private String username;
+    private String password;
 
-        registrarUsuario("admin", "Admin123");
-        registrarUsuario("usuario1", "MiClave123");
-        registrarUsuario("AlexMoschella", "PruebaProyecto92");
+    public Usuario(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
-    
-    private static void registrarUsuario(String usuario, String contrasena) {
-        USUARIOS.put(usuario.toLowerCase(), contrasena);
+
+    public String getUsername() {
+        return username;
     }
-    
-    public static boolean validarLogin(String inputUsuario, String inputContrasena) {
-        if (inputUsuario == null || inputUsuario.isEmpty() || 
-            inputContrasena == null || inputContrasena.isEmpty()) {
-            return false;
-        }       
-        String usuarioKey = inputUsuario.toLowerCase();
-        
-        return USUARIOS.containsKey(usuarioKey) && 
-               USUARIOS.get(usuarioKey).equals(inputContrasena);
+
+    public boolean validarPassword(String password) {
+        return this.password.equals(password);
     }
 }
