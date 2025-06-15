@@ -49,4 +49,8 @@ public class Calificacion {
         return String.format("[%s] %s - ★%d - %s (Modificado por: %s)", 
                fechaCreacion.format(formatter), usuarioCreacion, estrellas, razon, usuarioModificacion);
     }
+    public Calificacion() {
+    
+    }
+
 }

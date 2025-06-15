@@ -5,7 +5,7 @@ import java.util.List;
 
 public class GestionDeEmpleados {
     private List<Empleado> listaEmpleados;
-    private SistemaAutenticacion auth;
+    private final SistemaAutenticacion auth;
 
     public GestionDeEmpleados(SistemaAutenticacion auth) {
         this.auth = auth;

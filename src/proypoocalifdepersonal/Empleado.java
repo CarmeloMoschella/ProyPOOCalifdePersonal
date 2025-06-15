@@ -20,7 +20,9 @@ public class Empleado {
         this.cargo = cargo;
         this.calificaciones = new ArrayList<>();
     }
-
+    public Empleado() {
+        this.calificaciones = new ArrayList<>();
+    }
     // Getters y setters
     public int getCedula() { return cedula; }
     public void setCedula(int cedula) { this.cedula = cedula; }
@@ -42,4 +44,12 @@ public class Empleado {
     public void agregarCalificacion(Calificacion calificacion) {
         this.calificaciones.add(calificacion);
     }
+    
+   
+    public void setCalificaciones(List<Calificacion> calificaciones) {
+         this.calificaciones = calificaciones;
+    }
+
+
+
 }

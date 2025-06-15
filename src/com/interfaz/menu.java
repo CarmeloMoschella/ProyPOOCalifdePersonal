@@ -5,6 +5,10 @@
 package com.interfaz;
 
 import java.awt.Color;
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
+import javax.swing.JOptionPane;
+import proypoocalifdepersonal.Empleado;
 
 /**
  *
@@ -17,6 +21,7 @@ public class menu extends javax.swing.JFrame {
   
     public menu() {
         initComponents();
+        mostrartabla();
     }
 
     /**
@@ -45,7 +50,6 @@ public class menu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1200, 619));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -129,15 +133,16 @@ public class menu extends javax.swing.JFrame {
             }
         });
 
+        table.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         scrollTabla.setViewportView(table);
@@ -313,4 +318,44 @@ public static void main(String args[]) {
     private javax.swing.JLabel title;
     private javax.swing.JLabel xButton;
     // End of variables declaration//GEN-END:variables
+private void mostrartabla() {
+    DefaultTableModel modelo = new DefaultTableModel();
+    modelo.addColumn("Cédula");
+    modelo.addColumn("Nombre");
+    modelo.addColumn("Fecha Contratación");
+    modelo.addColumn("Departamento");
+    modelo.addColumn("Cargo");
+
+    // Verifica la ruta del archivo
+    String rutaJSON = "datos_empleados.json";
+    System.out.println("Buscando archivo en: " + new java.io.File(rutaJSON).getAbsolutePath());
+
+    List<Empleado> empleados = JsonUtil.cargarEmpleados(rutaJSON);
+
+    if (empleados != null && !empleados.isEmpty()) {
+        for (Empleado emp : empleados) {
+            modelo.addRow(new Object[]{
+                emp.getCedula(),
+                emp.getNombreApellido(),
+                emp.getFechaContratacion(),
+                emp.getDepartamento(),
+                emp.getCargo()
+            });
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, 
+            "No se encontraron datos o el archivo está vacío", 
+            "Error", 
+            JOptionPane.ERROR_MESSAGE);
+    }
+
+    table.setModel(modelo);
+    
+    // Ajusta el tamaño de las columnas
+    table.getColumnModel().getColumn(0).setPreferredWidth(80);  // Cédula
+    table.getColumnModel().getColumn(1).setPreferredWidth(200); // Nombre
+    table.getColumnModel().getColumn(2).setPreferredWidth(120); // Fecha
+    table.getColumnModel().getColumn(3).setPreferredWidth(150); // Departamento
+    table.getColumnModel().getColumn(4).setPreferredWidth(150); // Cargo
+}
 }
